@@ -96,18 +96,29 @@
   <!-- Pop-up content -->
   <div id="overlay"></div>
   <div id="popup">
-    <h2>🎉 Happy Birthday Mummy Rayyan! 🎉</h2>
-    <p>Wishing you a day filled with laughter and joy!</p>
+    <h2 id="popup-title"></h2>
+    <p id="popup-content"></p>
     <button class="close-btn" onclick="closePopup()">Close</button>
   </div>
 
   <script>
+    // Function for typing animation
+    async function printwriter(parent, sentence, delay=20){
+      function write(pos){
+        return new Promise(resolve => setTimeout(() => {let c=sentence.charAt(pos); parent.innerHTML+=(c==' '?'&nbsp;':c); resolve()}, delay))
+      }
+      parent.innerText=''
+      for(let i=0; i<sentence.length; i++) await write(i)
+    }
+    
     // Function to show the pop-up and start confetti
-    function showPopup() {
+    async function showPopup() {
       document.getElementById('popup').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
       startConfetti();
       playSound();
+      printwriter(document.getElementById('popup-title'), '🎉 Happy Birthday Mummy Rayyan! 🎉');
+      printwriter(document.getElementById('popup-content'), 'Wishing you a day filled with laughter and joy!');
     }
 
     // Function to close the pop-up and stop confetti
@@ -119,7 +130,7 @@
 
     // Function to play a fun sound
     function playSound() {
-      var audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+      var audio = new Audio('https://www.soundjay.com/buttons/beep-07a.wav');
       audio.play();
     }
 
