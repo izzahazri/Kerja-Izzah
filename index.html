@@ -113,10 +113,10 @@
     
     // Function to show the pop-up and start confetti
     async function showPopup() {
+      await playSound();
       document.getElementById('popup').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
       startConfetti();
-      playSound();
       await printwriter(document.getElementById('popup-title'), '🎉 Happy Birthday Mummy Rayyan! 🎉');
       printwriter(document.getElementById('popup-content'), 'Wishing you a day filled with laughter and joy!');
     }
@@ -132,7 +132,7 @@
     function playSound() {
       // var audio = new Audio('https://www.soundjay.com/buttons/beep-07a.wav');
       var audio = new Audio('https://www.soundjay.com/communication/typewriter-1.wav');
-      audio.play();
+      return audio.play();
     }
 
     // Confetti effect using a simple JavaScript library
