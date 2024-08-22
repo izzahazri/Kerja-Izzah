@@ -110,6 +110,10 @@
       parent.innerText=''
       for(let i=0; i<sentence.length; i++) await write(i)
     }
+
+    Audio.prototype.stop = function(){
+      this.currentTime = this.duration;
+    }
     
     // Function to show the pop-up and start confetti
     async function showPopup() {
